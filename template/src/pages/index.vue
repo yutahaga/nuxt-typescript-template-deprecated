@@ -2,11 +2,10 @@
   <section>
     <h1 class="header">Nuxt TypeScript Starter</h1>
     <div class="cards">
-      <Card
+      <Card 
         v-for="person in people"
         :key="person.id"
-        :person="person"
-      />
+        :person="person" />
     </div>
   </section>
 </template>
@@ -26,7 +25,7 @@ export default class extends Vue {
   @State people?: store.People;
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .header {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

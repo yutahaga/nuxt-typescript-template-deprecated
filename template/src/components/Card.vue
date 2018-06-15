@@ -16,11 +16,11 @@ export default class Card extends Vue {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .card {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 1rem;
   margin: 0.25rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border: 0.25rem solid gainsboro;
 }
 </style>

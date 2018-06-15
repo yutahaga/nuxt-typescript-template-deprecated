@@ -1,4 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
+const StylelintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
   chainWebpack: config => {
@@ -22,5 +24,12 @@ module.exports = {
       .set('~', path.join(__dirname, 'src'))
       .set('assets', path.join(__dirname, 'assets'))
       .set('static', path.join(__dirname, 'static'));
+
+    // Add Stylelint plugin
+    config.plugin('stylelint').use(StylelintPlugin, [
+      {
+        files: ['**/*.css', '**/*.scss', '**/*.vue'],
+      },
+    ]);
   },
 };
