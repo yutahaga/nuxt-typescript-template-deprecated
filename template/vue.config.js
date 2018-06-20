@@ -3,6 +3,8 @@ const path = require('path');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const nuxtConfig = require('./nuxt.config');
 
+const srcDir = (nuxtConfig.srcDir || './src/').replace(/\/$/, '');
+
 module.exports = {
   chainWebpack: config => {
     // Remove unnecessary plugins
@@ -22,9 +24,9 @@ module.exports = {
     // Change resolve config for eslint-import-resolver
     config.resolve.alias
       .set('~~', path.join(__dirname))
-      .set('~', path.join(__dirname, 'src'))
-      .set('assets', path.join(__dirname, 'assets'))
-      .set('static', path.join(__dirname, 'static'));
+      .set('~', path.join(__dirname, srcDir))
+      .set('assets', path.join(__dirname, srcDir, 'assets'))
+      .set('static', path.join(__dirname, srcDir, 'static'));
 
     // Add Stylelint plugin
     config.plugin('stylelint').use(StylelintPlugin, [
@@ -41,10 +43,10 @@ module.exports = {
       ).map(resource =>
         resource
           .replace(/^~~\//, `./`)
-          .replace(/^~\//, `./src/`)
-          .replace(/^@\//, `./src/`)
-          .replace(/^assets\//, `./src/assets/`)
-          .replace(/^static\//, `./src/static/`)
+          .replace(/^~\//, `${srcDir}/`)
+          .replace(/^@\//, `${srcDir}/`)
+          .replace(/^assets\//, `${srcDir}/assets/`)
+          .replace(/^static\//, `${srcDir}/static/`)
       );
 
       ['vue-modules', 'vue', 'normal-modules', 'normal'].forEach(ruleName => {
