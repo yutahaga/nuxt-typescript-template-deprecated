@@ -56,6 +56,11 @@ module.exports = {
   ** Build configuration
   */
   css: ['~/assets/css/main.scss'],
+  sassResources: [
+    '~/assets/css/resources/functions/**/*.scss',
+    '~/assets/css/resources/variables/**/*.scss',
+    '~/assets/css/resources/mixins/**/*.scss',
+  ],
   build: {},
   modules: ['@nuxtjs/axios', '~~/modules/vue-cli.js'],
   axios: {},

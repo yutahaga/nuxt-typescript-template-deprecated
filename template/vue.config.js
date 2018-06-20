@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
 const StylelintPlugin = require('stylelint-webpack-plugin');
+const nuxtConfig = require('./nuxt.config');
 
 module.exports = {
   chainWebpack: config => {
@@ -31,5 +32,31 @@ module.exports = {
         files: ['**/*.css', '**/*.scss', '**/*.vue'],
       },
     ]);
+
+    // Add style resouces to all SFCs.
+    if ('sassResources' in nuxtConfig && nuxtConfig.sassResources) {
+      const resources = (typeof nuxtConfig.sassResources === 'string'
+        ? [nuxtConfig.sassResources]
+        : nuxtConfig.sassResources
+      ).map(resource =>
+        resource
+          .replace(/^~~\//, `./`)
+          .replace(/^~\//, `./src/`)
+          .replace(/^@\//, `./src/`)
+          .replace(/^assets\//, `./src/assets/`)
+          .replace(/^static\//, `./src/static/`)
+      );
+
+      ['vue-modules', 'vue', 'normal-modules', 'normal'].forEach(ruleName => {
+        config.module
+          .rule('scss')
+          .oneOf(ruleName)
+          .use('sass-resources-loader')
+          .loader('sass-resources-loader')
+          .options({
+            resources,
+          });
+      });
+    }
   },
 };
