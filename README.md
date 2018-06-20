@@ -7,17 +7,19 @@ Live demo: https://nuxt-typescript-starter.johnlindquist.com
 [![Travis](https://img.shields.io/travis/yutahaga/nuxt-typescript-template/master.svg)](https://travis-ci.org/yutahaga/nuxt-typescript-template)
 
 ## Features
-* TypeScript + Babel
-* ESLint
-* Stylelint
-* Prettier
-* Jest
+
+- TypeScript + Babel
+- SCSS
+- ESLint
+- Stylelint
+- Prettier
+- Jest
 
 ## Installation
 
 This is a project template for [vue-cli](https://github.com/vuejs/vue-cli).
 
-``` bash
+```bash
 $ vue init yutahaga/nuxt-typescript-template my-project
 $ cd my-project
 # install dependencies
@@ -30,7 +32,7 @@ $ npm install # Or yarn install
 
 ### Development
 
-``` bash
+```bash
 # serve with hot reloading at localhost:3000
 $ npm run dev
 ```
@@ -39,7 +41,7 @@ Go to [http://localhost:3000](http://localhost:3000)
 
 ### Production
 
-``` bash
+```bash
 # build for production and launch the server
 $ npm run build
 $ npm start
@@ -47,7 +49,7 @@ $ npm start
 
 ### Generate
 
-``` bash
+```bash
 # generate a static project
 $ npm run generate
 ```
