@@ -61,7 +61,9 @@ module.exports = {
     '~/assets/css/resources/variables/**/*.scss',
     '~/assets/css/resources/mixins/**/*.scss',
   ],
-  build: {},
+  build: {
+    extractCSS: true,
+  },
   modules: ['@nuxtjs/axios', '~~/modules/vue-cli.js'],
   axios: {},
 };

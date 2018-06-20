@@ -1,5 +1,4 @@
 const path = require('path');
-const vueCliConfig = require('@vue/cli-service/webpack.config.js');
 
 module.exports = function() {
   const enabledTs = !!require.resolve('@vue/cli-plugin-typescript');
@@ -11,6 +10,11 @@ module.exports = function() {
 
   // Extend build
   this.extendBuild(config => {
+    // Set NUXT_ENV to server or client
+    process.env.NUXT_ENV = config.name;
+
+    const vueCliConfig = require('@vue/cli-service/webpack.config.js');
+
     // Replace the module by vue-cli
     config.module = vueCliConfig.module;
 
