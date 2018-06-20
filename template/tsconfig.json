@@ -19,6 +19,9 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["src/*"],
+      "@/*": ["src/*"],
+      "assets/*": ["src/assets/*"],
+      "static/*": ["src/static/*"],
       "*": ["types/*"]
     }
   },
@@ -27,7 +30,7 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
-  ],
-  "exclude": ["node_modules"]
+    "tests/**/*.tsx",
+    "types/**/*.d.ts"
+  ]
 }
