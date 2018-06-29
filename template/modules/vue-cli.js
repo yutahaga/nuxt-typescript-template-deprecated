@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = function() {
   const enabledTs = !!require.resolve('@vue/cli-plugin-typescript');
 
@@ -37,20 +35,14 @@ module.exports = function() {
     });
 
     // Change the cache directory on server entry
-    if (config.name === 'server') {
-      const cacheDirectory = path.resolve(
-        require.resolve('vue/package.json'),
-        '../../.cache/server'
-      );
-      config.module.rules.forEach(rule => {
-        if ('use' in rule && Array.isArray(rule.use)) {
-          rule.use.forEach(loader => {
-            if ('options' in loader && 'cacheDirectory' in loader.options) {
-              loader.options.cacheDirectory = cacheDirectory;
-            }
-          });
-        }
-      });
-    }
+    config.module.rules.forEach(rule => {
+      if ('use' in rule && Array.isArray(rule.use)) {
+        rule.use.forEach(loader => {
+          if ('options' in loader && 'cacheIdentifier' in loader.options) {
+            delete loader.options.cacheIdentifier;
+          }
+        });
+      }
+    });
   });
 };
