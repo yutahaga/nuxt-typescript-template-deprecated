@@ -24,6 +24,12 @@ module.exports = {
         ignoreAtRules: ['if', 'else'],
       },
     ],
+    'selector-pseudo-class-no-unknown': [
+      true,
+      {
+        ignorePseudoClasses: ['local', 'global', 'export'],
+      }
+    ],
     'at-rule-name-space-after': 'always',
     'scss/at-else-closing-brace-newline-after': 'always-last-in-chain',
     'scss/at-else-closing-brace-space-after': 'always-intermediate',
