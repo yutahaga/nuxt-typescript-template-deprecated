@@ -31,12 +31,20 @@ module.exports = {
       .set('assets', path.join(__dirname, srcDir, 'assets'))
       .set('static', path.join(__dirname, srcDir, 'static'));
 
-    // Add Stylelint plugin
-    config.plugin('stylelint').use(StylelintPlugin, [
-      {
-        files: ['**/*.css', '**/*.scss', '**/*.vue'],
-      },
-    ]);
+    if (process.env.NUXT_ENV === 'client') {
+      // Add Stylelint plugin
+      config.plugin('stylelint').use(StylelintPlugin, [
+        {
+          files: ['**/*.css', '**/*.scss', '**/*.vue'],
+        },
+      ]);
+    } else {
+      // Remove Eslint rule
+      config.module.rules.delete('eslint');
+
+      // Remove Fork TS Checker
+      config.plugins.delete('fork-ts-checker');
+    }
 
     // Add style resouces to all SFCs.
     if ('sassResources' in nuxtConfig && nuxtConfig.sassResources) {
