@@ -3,12 +3,11 @@ const path = require('path');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const nuxtConfig = require('./nuxt.config');
 
-const isServer = process.env.NUXT_ENV === 'server';
 const srcDir = (nuxtConfig.srcDir || './src/').replace(/\/$/, '');
 
 module.exports = {
   css: {
-    extract: !isServer && nuxtConfig.build && nuxtConfig.build.extractCSS,
+    extract: nuxtConfig.build && nuxtConfig.build.extractCSS,
   },
   chainWebpack: config => {
     // Remove unnecessary plugins
