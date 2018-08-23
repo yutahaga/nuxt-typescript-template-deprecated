@@ -1,5 +1,7 @@
 module.exports = function() {
   const enabledTs = !!require.resolve('@vue/cli-plugin-typescript');
+  const enabledExtractCSS =
+    this.nuxt.options.build && this.nuxt.options.build.extractCSS;
 
   if (enabledTs) {
     // Add .ts extension for store, middleware and more
@@ -15,6 +17,18 @@ module.exports = function() {
 
     // Replace the module by vue-cli
     config.module = vueCliConfig.module;
+
+    // Remove CSS Extract Plugin from nuxt.js side
+    if (enabledExtractCSS) {
+      const CSSExtractPlugin = require('mini-css-extract-plugin');
+      const CSSExtractPluginIndex = config.plugins.findIndex(
+        plugin => plugin instanceof CSSExtractPlugin
+      );
+
+      if (CSSExtractPluginIndex !== -1) {
+        config.plugins.splice(CSSExtractPluginIndex, 1);
+      }
+    }
 
     // Add plugins from vue-cli
     config.plugins.push.apply(config.plugins, vueCliConfig.plugins);

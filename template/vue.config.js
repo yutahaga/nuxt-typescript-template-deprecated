@@ -8,7 +8,7 @@ const srcDir = (nuxtConfig.srcDir || './src/').replace(/\/$/, '');
 
 module.exports = {
   css: {
-    extract: !isServer && nuxtConfig.build.extractCSS,
+    extract: !isServer && nuxtConfig.build && nuxtConfig.build.extractCSS,
   },
   chainWebpack: config => {
     // Remove unnecessary plugins
@@ -23,8 +23,7 @@ module.exports = {
       .delete('html')
       .delete('preload')
       .delete('prefetch')
-      .delete('copy')
-      .delete('extract-css');
+      .delete('copy');
 
     // Change resolve config for eslint-import-resolver
     config.resolve.alias
