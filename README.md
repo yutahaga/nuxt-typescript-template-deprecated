@@ -1,4 +1,4 @@
-# Nuxt TypeScript Starter
+# Nuxt TypeScript Starter [Deprecated]
 
 A [Nuxt.js](https://github.com/nuxt/nuxt.js) starter project template without the distraction of a complicated development environment.
 
